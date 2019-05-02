@@ -3,7 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerlessDevOps", "ServerlessDevOps\ServerlessDevOps.csproj", "{D67F0E69-753D-4066-A9B9-7CA0FC9367EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerlessDevOps", "ServerlessDevOps\ServerlessDevOps.csproj", "{D67F0E69-753D-4066-A9B9-7CA0FC9367EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository items", "Repository items", "{E1D93466-448F-452E-894A-DCA1D5EF85CD}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		..\LICENSE = ..\LICENSE
+		..\Readme.md = ..\Readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
