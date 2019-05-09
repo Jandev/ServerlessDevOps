@@ -5,6 +5,8 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using ServerlessDevOps.Model;
+using Newtonsoft.Json;
 
 namespace ServerlessDevOps
 {
@@ -20,6 +22,9 @@ namespace ServerlessDevOps
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
 
             log.LogInformation(requestBody);
+            var alert = JsonConvert.DeserializeObject<AzureMonitorCommonAlertSchema>(requestBody);
+
+            var messageData = new MessageData(alert);
 
             log.LogInformation($"Executed {nameof(ServicebusAlert)}.");
 
