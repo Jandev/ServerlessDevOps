@@ -1,13 +1,15 @@
-using System.IO;
-using System.Threading.Tasks;
+using HttpBinding.HttpCommand;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using ServerlessDevOps.Model;
 using Newtonsoft.Json;
+using ServerlessDevOps.Model;
 using ServerlessDevOps.Templates;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace ServerlessDevOps
 {
@@ -16,6 +18,8 @@ namespace ServerlessDevOps
 		[FunctionName("ServicebusAlert")]
 		public static async Task<IActionResult> Run(
 			[HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
+			[HttpCommand(CommandUrl = "%TeamsWebhookUrl%", HttpMethod = "POST", MediaType = "application/json")]
+			IAsyncCollector<HttpCommand> httpCommandCollector,
 			ILogger log)
 		{
 			log.LogInformation($"Executing {nameof(ServicebusAlert)}.");
@@ -23,10 +27,14 @@ namespace ServerlessDevOps
 			string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
 
 			log.LogInformation(requestBody);
-			
+
 			var messageData = GetMessageData(requestBody);
-			
+			log.LogDebug($"Alert identifier is `{messageData.AlertId}`.");
+
 			var messageCard = CreateMessageCard(messageData);
+			log.LogDebug($"Created message card body: {Environment.NewLine}`{messageCard}`.");
+
+			await httpCommandCollector.AddAsync(new HttpCommand(messageCard));
 
 			log.LogInformation($"Executed {nameof(ServicebusAlert)}.");
 
