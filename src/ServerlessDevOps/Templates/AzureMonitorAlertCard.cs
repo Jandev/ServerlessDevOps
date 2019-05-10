@@ -80,7 +80,29 @@ namespace ServerlessDevOps.Templates
             #line default
             #line hidden
             this.Write("\"\r\n\t\t\t\t}\r\n\t\t\t],\r\n\t\t\t\"text\": \"There are a lot of messages waiting on the queue, pl" +
-                    "ease check this ASAP!\",\r\n\t\t}\r\n\t]\r\n}");
+                    "ease check this ASAP!\",\r\n\t\t\t\"potentialAction\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"@type\": \"HttpPOST" +
+                    "\",\r\n\t\t\t\t\t\"name\": \"Fix the stuck Service Bus\",\r\n\t\t\t\t\t\"target\": \"");
+            
+            #line 40 "D:\Projecten\ServerlessDevOps\src\ServerlessDevOps\Templates\AzureMonitorAlertCard.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.fixServicebusUrl));
+            
+            #line default
+            #line hidden
+            this.Write("\",\r\n\t\t\t\t\t\"body\": \"{\\\"ResourceId\\\": \\\"");
+            
+            #line 41 "D:\Projecten\ServerlessDevOps\src\ServerlessDevOps\Templates\AzureMonitorAlertCard.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.messageData.ResourceId));
+            
+            #line default
+            #line hidden
+            this.Write("\\\",\\\"Entity\\\": \\\"");
+            
+            #line 41 "D:\Projecten\ServerlessDevOps\src\ServerlessDevOps\Templates\AzureMonitorAlertCard.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(this.messageData.Entity));
+            
+            #line default
+            #line hidden
+            this.Write("\\\" }\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}");
             return this.GenerationEnvironment.ToString();
         }
     }

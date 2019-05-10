@@ -33,6 +33,14 @@
 				}
 			],
 			"text": "There are a lot of messages waiting on the queue, please check this ASAP!",
+			"potentialAction": [
+				{
+					"@type": "HttpPOST",
+					"name": "Fix the stuck Service Bus",
+					"target": "<#= this.fixServicebusUrl #>",
+					"body": "{\"ResourceId\": \"<#= this.messageData.ResourceId #>\",\"Entity\": \"<#= this.messageData.Entity #>\" }"
+				}
+			]
 		}
 	]
 }

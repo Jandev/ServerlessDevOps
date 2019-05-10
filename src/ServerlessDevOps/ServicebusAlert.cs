@@ -43,14 +43,16 @@ namespace ServerlessDevOps
 
 		private static MessageData GetMessageData(string requestBody)
 		{
-			var alert = JsonConvert.DeserializeObject<AzureMonitorCommonAlertSchema>(requestBody);
+			var alert = JsonConvert.DeserializeObject<IncomingAzureMonitorCommonAlertSchema>(requestBody);
 			var messageData = new MessageData(alert);
 			return messageData;
 		}
 
 		private static string CreateMessageCard(MessageData messageData)
 		{
-			var messageCard = new AzureMonitorAlertCard(messageData);
+			var fixFailingServicebusUrl = Environment.GetEnvironmentVariable("FixFailingServicebusUrl", EnvironmentVariableTarget.Process);
+
+			var messageCard = new AzureMonitorAlertCard(messageData, fixFailingServicebusUrl);
 			var messageContent = messageCard.TransformText();
 			return messageContent;
 		}

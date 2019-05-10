@@ -13,7 +13,7 @@ namespace ServerlessDevOps.Model
 		public string Entity { get; }
 		public double MetricValue { get; }
 
-		public MessageData(AzureMonitorCommonAlertSchema alert)
+		public MessageData(IncomingAzureMonitorCommonAlertSchema alert)
 		{
 			AlertId = alert.data.essentials.alertId;
 			AlertRule = alert.data.essentials.alertRule;

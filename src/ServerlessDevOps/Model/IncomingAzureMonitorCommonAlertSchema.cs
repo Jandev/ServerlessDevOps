@@ -5,7 +5,7 @@ namespace ServerlessDevOps.Model
     /// <summary>
     /// Generated via `Paste JSON as Classes`
     /// </summary>
-    public class AzureMonitorCommonAlertSchema
+    public class IncomingAzureMonitorCommonAlertSchema
     {
         public string schemaId { get; set; }
         public Data data { get; set; }
