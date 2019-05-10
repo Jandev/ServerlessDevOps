@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ServerlessDevOps.Model
 {
-	internal class MessageData
+	public class MessageData
 	{
 		public string AlertId { get; }
 		public string AlertRule { get; }
