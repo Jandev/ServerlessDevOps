@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ServerlessDevOps.Model
 {
-	public class MessageData
+	public class AzureMonitorAlertCardMessageData
 	{
 		public string AlertId { get; }
 		public string AlertRule { get; }
@@ -13,7 +13,7 @@ namespace ServerlessDevOps.Model
 		public string Entity { get; }
 		public double MetricValue { get; }
 
-		public MessageData(IncomingAzureMonitorCommonAlertSchema alert)
+		public AzureMonitorAlertCardMessageData(IncomingAzureMonitorCommonAlertSchema alert)
 		{
 			AlertId = alert.data.essentials.alertId;
 			AlertRule = alert.data.essentials.alertRule;

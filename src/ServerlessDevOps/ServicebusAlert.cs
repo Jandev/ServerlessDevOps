@@ -41,14 +41,14 @@ namespace ServerlessDevOps
 			return new OkResult();
 		}
 
-		private static MessageData GetMessageData(string requestBody)
+		private static AzureMonitorAlertCardMessageData GetMessageData(string requestBody)
 		{
 			var alert = JsonConvert.DeserializeObject<IncomingAzureMonitorCommonAlertSchema>(requestBody);
-			var messageData = new MessageData(alert);
+			var messageData = new AzureMonitorAlertCardMessageData(alert);
 			return messageData;
 		}
 
-		private static string CreateMessageCard(MessageData messageData)
+		private static string CreateMessageCard(AzureMonitorAlertCardMessageData messageData)
 		{
 			var fixFailingServicebusUrl = Environment.GetEnvironmentVariable("FixFailingServicebusUrl", EnvironmentVariableTarget.Process);
 

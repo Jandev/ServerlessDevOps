@@ -4,9 +4,11 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using ServerlessDevOps.Model;
+using ServerlessDevOps.Templates;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace ServerlessDevOps
@@ -28,6 +30,7 @@ namespace ServerlessDevOps
 
 			var result = new HttpResponseMessage
 			{
+				Content = new StringContent(GetContent(incomingFixServicebusModel)),
 				Headers =
 				{
 					{ "CARD-ACTION-STATUS", $"Resource `{incomingFixServicebusModel.ResourceId}` - Entity `{incomingFixServicebusModel.Entity}` is fixed now."},
@@ -35,10 +38,20 @@ namespace ServerlessDevOps
 				},
 				StatusCode = HttpStatusCode.OK
 			};
+			result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
 
 			log.LogInformation($"Executed {nameof(FixFailingServicebus)}.");
 
 			return result;
+		}
+
+		private static string GetContent(IncomingFixServicebusModel incomingFixServicebusModel)
+		{
+			var messageData = new FixedFailingServicebusMessageData(incomingFixServicebusModel.ResourceId, incomingFixServicebusModel.Entity);
+
+			var messageCard = new FixedFailingServicebusCard(messageData);
+			var messageContent = messageCard.TransformText();
+			return messageContent;
 		}
 	}
 }

@@ -1,0 +1,30 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+{
+	"@type": "MessageCard",
+	"@context": "https://schema.org/extensions",
+	"summary": "Fixed the Service Bus error",
+	"themeColor": "0078D7",
+	"sections": [
+		{
+			"activityImage": "https://jan-v.nl/Media/logo.png",
+			"activityTitle": "Fixed the Service Bus error",
+			"activitySubtitle":"<#= System.DateTime.UtcNow #>",
+			"facts": [
+				{
+					"name": "Resource Id:",
+					"value": "<#= this.messageData.ResourceId #>"
+				},
+				{
+					"name": "Entity:",
+					"value": "<#= this.messageData.Entity #>"
+				}
+			],
+			"text": "The Service Bus issue is fixed, all should be fine now."
+		}
+	]
+}
