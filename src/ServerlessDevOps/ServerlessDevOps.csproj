@@ -35,6 +35,10 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>FixedFailingServicebusCard.cs</LastGenOutput>
     </None>
+    <None Update="Templates\TimeoutCard.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>TimeoutCard.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
@@ -49,6 +53,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>FixedFailingServicebusCard.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Templates\TimeoutCard.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TimeoutCard.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

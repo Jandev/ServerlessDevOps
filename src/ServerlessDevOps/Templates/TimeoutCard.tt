@@ -1,0 +1,26 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+{
+	"@type": "MessageCard",
+	"@context": "https://schema.org/extensions",
+	"summary": "Testing the timeout",
+	"themeColor": "0078D7",
+	"sections": [
+		{
+			"activityImage": "https://jan-v.nl/Media/logo.png",
+			"activityTitle": "Timeout test",
+			"activitySubtitle":"Testing, testing...",
+			"facts": [
+				{
+					"name": "Timeout (miliseconds):",
+					"value": "<#= this.timeout #>"
+				}
+			],
+			"text": "The response has returned with a timeout of <#= this.timeout #> miliseconds.",
+		}
+	]
+}
