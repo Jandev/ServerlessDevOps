@@ -136,3 +136,14 @@ This message will have a button triggering the `TimeoutTest` Azure Function with
 If you want a higher timeout, you can make it any amount you like.
 
 When the Azure Function returns, it'll create a reply to the original message.
+
+## AuthorizationTest
+
+MessageCards have the option to add actions to the card. This action can invoke some endpoint on your API.
+You might want to check the incoming request on the API to make sure it's from a valid sender.
+
+This specific function is checking if the incoming token (JWT) is valid. I'm using some other code for this, found
+on an [old GitHub repository where such a validator is shared](https://github.com/OfficeDev/o365-actionable-messages-utilities-for-dotnet).
+
+No body is necessary, just the `Authorization` header in the request. This is automatically added by Microsoft Teams
+to the `potentialAction`.
