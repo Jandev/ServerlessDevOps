@@ -21,20 +21,22 @@ namespace ServerlessDevOps
 			IAsyncCollector<Event> outputCollector,
 			ILogger log)
 		{
-			log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+			log.LogInformation($"Executing {nameof(CreateFailingEvents)}");
 
 			var rng = new Random();
-			if (rng.Next(20) % 3 == 0)
+			var number = rng.Next(20);
+			if (number % 3 == 0)
 			{
+				log.LogDebug($"Found number {number}");
 				outputCollector.AddAsync(
 					new Event
 					{
-						Data = "Something failed, please help us...",
+						Data = $"Something failed at {DateTime.UtcNow}, please help us...",
 						EventType = nameof(CreateFailingEvents),
 						Subject = "Jandev/ServerlessDevOps/FailingEvent"
 					});
 			}
-
+			log.LogInformation($"Executed {nameof(CreateFailingEvents)}");
 		}
 	}
 }

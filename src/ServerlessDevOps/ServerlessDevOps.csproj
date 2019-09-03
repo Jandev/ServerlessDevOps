@@ -35,6 +35,10 @@
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>AzureMonitorAlertCard.cs</LastGenOutput>
     </None>
+    <None Update="Templates\FailingEventCard.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>FailingEventCard.cs</LastGenOutput>
+    </None>
     <None Update="Templates\FixedFailingServicebusCard.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>FixedFailingServicebusCard.cs</LastGenOutput>
@@ -52,6 +56,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AzureMonitorAlertCard.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Templates\FailingEventCard.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FailingEventCard.tt</DependentUpon>
     </Compile>
     <Compile Update="Templates\FixedFailingServicebusCard.cs">
       <DesignTime>True</DesignTime>
